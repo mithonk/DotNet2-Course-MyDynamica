@@ -480,7 +480,7 @@ namespace WinFormsApp1
         {
             if (comboColumn.SelectedIndex == -1) {
                 MessageBox.Show("Please Select Column", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                return;
+                //return;
                 
             } else
             {
