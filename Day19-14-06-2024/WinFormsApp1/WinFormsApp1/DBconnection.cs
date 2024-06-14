@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +16,8 @@ namespace WinFormsApp1
 {
     public partial class DBconnection : Form
     {
-        //int id;
+        DataTable dt = new DataTable();
+        DataView dv = new DataView();
 
         public DBconnection()
         {
@@ -99,17 +101,11 @@ namespace WinFormsApp1
                 cnn.Open();
                 command = new SqlCommand(sql, cnn);
                 SqlDataReader sqlReader = command.ExecuteReader();
-                /*
-                while (sqlReader.Read())
-                {
-                    MessageBox.Show(sqlReader.GetValue(0) + " - " + sqlReader.GetValue(1) + " - " + sqlReader.GetValue(2));
-                }
-                */
 
-                DataTable dt = new DataTable();
                 dt.Load(sqlReader);
+                dv = dt.DefaultView;
+                dataGridView1.DataSource = dv;
 
-                dataGridView1.DataSource = dt;
                 sqlReader.Close();
                 command.Dispose();
                 cnn.Close();
@@ -441,84 +437,134 @@ namespace WinFormsApp1
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string connetionString = null;
-            string sql = null;
-
-            connetionString = "Server=MITHONK\\SQLEXPRESS;Database=CsarpDb;Trusted_Connection=True; TrustServerCertificate=True;";
-
-            SqlConnection cnn;
-            cnn = new SqlConnection(connetionString);
-
-            SqlCommand command;
-
-            //sql = "SELECT * FROM students WHERE first_name = '"+txtSearch.Text+"' ";
-            sql = "SELECT * FROM students WHERE first_name LIKE '%" + txtSearch.Text + "%' OR last_name LIKE '%" + txtSearch.Text + "%' OR grade LIKE '%" + txtSearch.Text + "%' OR gender LIKE '%" + txtSearch.Text + "%' OR address LIKE '%" + txtSearch.Text + "%' ";
-
-            try
+            if (dt.Rows.Count <= 0)
             {
-                cnn.Open();
-                command = new SqlCommand(sql, cnn);
-                SqlDataReader sqlReader = command.ExecuteReader();
-
-                DataTable dt = new DataTable();
-                dt.Load(sqlReader);
-
-                dataGridView1.DataSource = dt;
-                sqlReader.Close();
-                command.Dispose();
-                cnn.Close();
-
-
+                MessageBox.Show("Please Load the Data", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Can not open connection ! " + ex.Message);
+                try
+                {
+                    dv = new DataView(dt, "first_name LIKE '%" + txtSearch.Text + "%' OR last_name LIKE '%" + txtSearch.Text + "%' OR grade LIKE '%" + txtSearch.Text + "%' OR gender LIKE '%" + txtSearch.Text + "%' OR address LIKE '%" + txtSearch.Text + "%'", "first_name asc", DataViewRowState.CurrentRows);
+                    dataGridView1.DataSource = dv;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
+
+
+
+
+            //string connetionString = null;
+            //string sql = null;
+
+            //connetionString = "Server=MITHONK\\SQLEXPRESS;Database=CsarpDb;Trusted_Connection=True; TrustServerCertificate=True;";
+
+            //SqlConnection cnn;
+            //cnn = new SqlConnection(connetionString);
+
+            //SqlCommand command;
+
+            ////sql = "SELECT * FROM students WHERE first_name = '"+txtSearch.Text+"' ";
+            //sql = "SELECT * FROM students WHERE first_name LIKE '%" + txtSearch.Text + "%' OR last_name LIKE '%" + txtSearch.Text + "%' OR grade LIKE '%" + txtSearch.Text + "%' OR gender LIKE '%" + txtSearch.Text + "%' OR address LIKE '%" + txtSearch.Text + "%' ";
+
+            //try
+            //{
+            //    cnn.Open();
+            //    command = new SqlCommand(sql, cnn);
+            //    SqlDataReader sqlReader = command.ExecuteReader();
+
+            //    DataTable dt = new DataTable();
+            //    dt.Load(sqlReader);
+
+            //    dataGridView1.DataSource = dt;
+            //    sqlReader.Close();
+            //    command.Dispose();
+            //    cnn.Close();
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Can not open connection ! " + ex.Message);
+            //}
         }
 
         private void txtSearchColumn_TextChanged(object sender, EventArgs e)
         {
-            if (comboColumn.SelectedIndex == -1) {
-                MessageBox.Show("Please Select Column", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                //return;
-                
-            } else
+            //if (comboColumn.SelectedIndex == -1)
+            //{
+            //    MessageBox.Show("Please Select Column", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            //    comboColumn.Focus();
+            //    return;
+
+            //}
+            //else
+            //{
+            //    string connetionString = null;
+            //    string sql = null;
+
+            //    connetionString = "Server=MITHONK\\SQLEXPRESS;Database=CsarpDb;Trusted_Connection=True; TrustServerCertificate=True;";
+
+            //    SqlConnection cnn;
+            //    cnn = new SqlConnection(connetionString);
+
+            //    SqlCommand command;
+
+            //    //sql = "SELECT * FROM students WHERE first_name = '"+txtSearch.Text+"' ";
+            //    sql = "SELECT * FROM students WHERE " + comboColumn.SelectedItem.ToString() + " LIKE '%" + txtSearchColumn.Text + "%' ";
+
+            //    try
+            //    {
+            //        cnn.Open();
+            //        command = new SqlCommand(sql, cnn);
+            //        SqlDataReader sqlReader = command.ExecuteReader();
+
+            //        DataTable dt = new DataTable();
+            //        dt.Load(sqlReader);
+
+            //        dataGridView1.DataSource = dt;
+            //        sqlReader.Close();
+            //        command.Dispose();
+            //        cnn.Close();
+
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Can not open connection ! " + ex.Message);
+            //    }
+            //}
+
+
+
+            if (dt.Rows.Count <= 0)
             {
-                string connetionString = null;
-                string sql = null;
-
-                connetionString = "Server=MITHONK\\SQLEXPRESS;Database=CsarpDb;Trusted_Connection=True; TrustServerCertificate=True;";
-
-                SqlConnection cnn;
-                cnn = new SqlConnection(connetionString);
-
-                SqlCommand command;
-
-                //sql = "SELECT * FROM students WHERE first_name = '"+txtSearch.Text+"' ";
-                sql = "SELECT * FROM students WHERE " + comboColumn.SelectedItem.ToString() + " LIKE '%" + txtSearchColumn.Text + "%' ";
-
+                MessageBox.Show("Please Load the Data", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                return;
+            }
+            else
+            {
                 try
                 {
-                    cnn.Open();
-                    command = new SqlCommand(sql, cnn);
-                    SqlDataReader sqlReader = command.ExecuteReader();
-
-                    DataTable dt = new DataTable();
-                    dt.Load(sqlReader);
-
-                    dataGridView1.DataSource = dt;
-                    sqlReader.Close();
-                    command.Dispose();
-                    cnn.Close();
-
-
+                    dv = new DataView(dt, " "+comboColumn.SelectedItem.ToString()+" LIKE '%" + txtSearchColumn.Text + "%'", ""+comboColumn.SelectedItem.ToString()+" asc", DataViewRowState.CurrentRows);
+                    dataGridView1.DataSource = dv;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Can not open connection ! " + ex.Message);
+                    throw;
                 }
             }
-           
+
+
+
         }
+
+
+
+
     }
 }
