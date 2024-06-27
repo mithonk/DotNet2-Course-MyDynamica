@@ -18,7 +18,7 @@ namespace WinFormsApp1
     public partial class DBconnection : Form
     {
         string conString = ConfigurationSettings.AppSettings["ConnectionString"].ToString();
-        DataTable dt = new DataTable();
+        DataTable dt;
         DataView dv = new DataView();
         string id;
         public DBconnection()
@@ -50,6 +50,7 @@ namespace WinFormsApp1
         }
         private void GetAllStudents()
         {
+            dt = new DataTable();
             string connetionString = null;
             string sql = null;
 
