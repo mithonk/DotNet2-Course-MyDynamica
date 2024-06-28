@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentRegistration));
-            dataGridView1 = new DataGridView();
+            dataGridView = new DataGridView();
             label1 = new Label();
             admissionNo = new TextBox();
             label2 = new Label();
@@ -67,7 +67,7 @@
             search = new TextBox();
             bindingSource1 = new BindingSource(components);
             pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -75,14 +75,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 139);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1181, 683);
-            dataGridView1.TabIndex = 0;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Location = new Point(12, 139);
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowHeadersWidth = 51;
+            dataGridView.Size = new Size(1181, 683);
+            dataGridView.TabIndex = 0;
             // 
             // label1
             // 
@@ -490,12 +490,13 @@
             Controls.Add(label01);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridView);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "StudentRegistration";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Student Registration";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += StudentRegistration_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -510,7 +511,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView;
         private Label label1;
         private TextBox admissionNo;
         private Label label2;
