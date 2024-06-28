@@ -408,7 +408,8 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(64, 0, 64);
+            button1.BackColor = Color.FromArgb(0, 0, 64);
+            button1.FlatAppearance.BorderColor = Color.White;
             button1.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             button1.ForeColor = Color.White;
             button1.Image = Properties.Resources.add;
@@ -422,8 +423,9 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(64, 0, 64);
+            button2.BackColor = Color.FromArgb(0, 0, 64);
             button2.BackgroundImageLayout = ImageLayout.None;
+            button2.FlatAppearance.BorderColor = Color.White;
             button2.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             button2.ForeColor = Color.White;
             button2.Image = Properties.Resources.save;
@@ -437,7 +439,8 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(64, 0, 64);
+            button3.BackColor = Color.FromArgb(0, 0, 64);
+            button3.FlatAppearance.BorderColor = Color.White;
             button3.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             button3.ForeColor = Color.White;
             button3.Image = Properties.Resources.delete;
