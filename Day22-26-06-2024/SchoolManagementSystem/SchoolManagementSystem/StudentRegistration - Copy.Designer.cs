@@ -1,6 +1,6 @@
 ﻿namespace SchoolManagementSystem
 {
-    partial class StudentRegistration
+    partial class StudentRegistration1
     {
         /// <summary>
         /// Required designer variable.
@@ -438,7 +438,6 @@
             createUpdateBtn.Text = "Create";
             createUpdateBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             createUpdateBtn.UseVisualStyleBackColor = false;
-            createUpdateBtn.Click += createUpdateBtn_Click;
             // 
             // deleteBtn
             // 
