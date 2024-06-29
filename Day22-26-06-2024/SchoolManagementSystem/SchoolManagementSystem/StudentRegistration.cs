@@ -54,9 +54,46 @@ namespace SchoolManagementSystem
             }
         }
 
+        private void ClearData()
+        {
+            admissionNo.Clear();
+            grade.Text = "";
+            medium.Clear();
+            dateOfAdmission.Text = "";
+
+            firstName.Clear();
+            lastName.Clear();
+            fullName.Clear();
+            male.Checked = false;
+            female.Checked = false;
+            others.Checked = false;
+            dateOfBirth.Text = "";
+            nicNo.Clear();
+            telephoneNo.Clear();
+            address.Clear();
+
+            createUpdateBtn.Image = SchoolManagementSystem.Properties.Resources.save;
+            createUpdateBtn.Text = "Create";
+
+
+        }
+
         private void StudentRegistration_Load(object sender, EventArgs e)
         {
             FetchData();
+        }
+
+        private void newBtn_Click(object sender, EventArgs e)
+        {
+            ClearData();
+        }
+
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dataGridView.SelectedRows.Count > 0)
+            {
+                createUpdateBtn.Text = "Update";
+            }
         }
     }
 }

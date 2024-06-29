@@ -47,23 +47,23 @@
             label12 = new Label();
             address = new TextBox();
             male = new RadioButton();
-            dateTimePicker1 = new DateTimePicker();
+            dateOfBirth = new DateTimePicker();
             grade = new ComboBox();
             groupBox1 = new GroupBox();
             dateOfAdmission = new DateTimePicker();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            radioButton1 = new RadioButton();
+            others = new RadioButton();
             female = new RadioButton();
-            textBox3 = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
+            lastName = new TextBox();
+            firstName = new TextBox();
+            fullName = new TextBox();
+            telephoneNo = new TextBox();
+            nicNo = new TextBox();
             label01 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            newBtn = new Button();
+            createUpdateBtn = new Button();
+            deleteBtn = new Button();
             search = new TextBox();
             bindingSource1 = new BindingSource(components);
             pictureBox1 = new PictureBox();
@@ -83,6 +83,7 @@
             dataGridView.RowHeadersWidth = 51;
             dataGridView.Size = new Size(1181, 683);
             dataGridView.TabIndex = 0;
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // label1
             // 
@@ -241,13 +242,13 @@
             male.Text = "Male";
             male.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dateOfBirth
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 9F);
-            dateTimePicker1.Location = new Point(174, 205);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 4;
+            dateOfBirth.Font = new Font("Segoe UI", 9F);
+            dateOfBirth.Location = new Point(174, 205);
+            dateOfBirth.Name = "dateOfBirth";
+            dateOfBirth.Size = new Size(250, 27);
+            dateOfBirth.TabIndex = 4;
             // 
             // grade
             // 
@@ -289,12 +290,12 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(groupBox3);
-            groupBox2.Controls.Add(textBox3);
-            groupBox2.Controls.Add(textBox1);
-            groupBox2.Controls.Add(textBox2);
-            groupBox2.Controls.Add(textBox5);
+            groupBox2.Controls.Add(lastName);
+            groupBox2.Controls.Add(firstName);
+            groupBox2.Controls.Add(fullName);
+            groupBox2.Controls.Add(telephoneNo);
             groupBox2.Controls.Add(label2);
-            groupBox2.Controls.Add(textBox4);
+            groupBox2.Controls.Add(nicNo);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(address);
@@ -303,7 +304,7 @@
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(dateTimePicker1);
+            groupBox2.Controls.Add(dateOfBirth);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.ForeColor = Color.White;
             groupBox2.Location = new Point(1209, 302);
@@ -315,7 +316,7 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(radioButton1);
+            groupBox3.Controls.Add(others);
             groupBox3.Controls.Add(male);
             groupBox3.Controls.Add(female);
             groupBox3.Location = new Point(174, 145);
@@ -324,17 +325,17 @@
             groupBox3.TabIndex = 6;
             groupBox3.TabStop = false;
             // 
-            // radioButton1
+            // others
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Segoe UI", 9F);
-            radioButton1.Location = new Point(162, 16);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(73, 24);
-            radioButton1.TabIndex = 4;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Others";
-            radioButton1.UseVisualStyleBackColor = true;
+            others.AutoSize = true;
+            others.Font = new Font("Segoe UI", 9F);
+            others.Location = new Point(162, 16);
+            others.Name = "others";
+            others.Size = new Size(73, 24);
+            others.TabIndex = 4;
+            others.TabStop = true;
+            others.Text = "Others";
+            others.UseVisualStyleBackColor = true;
             // 
             // female
             // 
@@ -348,45 +349,45 @@
             female.Text = "Female";
             female.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // lastName
             // 
-            textBox3.Font = new Font("Segoe UI", 9F);
-            textBox3.Location = new Point(174, 75);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 27);
-            textBox3.TabIndex = 3;
+            lastName.Font = new Font("Segoe UI", 9F);
+            lastName.Location = new Point(174, 75);
+            lastName.Name = "lastName";
+            lastName.Size = new Size(250, 27);
+            lastName.TabIndex = 3;
             // 
-            // textBox1
+            // firstName
             // 
-            textBox1.Font = new Font("Segoe UI", 9F);
-            textBox1.Location = new Point(174, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 27);
-            textBox1.TabIndex = 2;
+            firstName.Font = new Font("Segoe UI", 9F);
+            firstName.Location = new Point(174, 40);
+            firstName.Name = "firstName";
+            firstName.Size = new Size(250, 27);
+            firstName.TabIndex = 2;
             // 
-            // textBox2
+            // fullName
             // 
-            textBox2.Font = new Font("Segoe UI", 9F);
-            textBox2.Location = new Point(174, 110);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 27);
-            textBox2.TabIndex = 2;
+            fullName.Font = new Font("Segoe UI", 9F);
+            fullName.Location = new Point(174, 110);
+            fullName.Name = "fullName";
+            fullName.Size = new Size(250, 27);
+            fullName.TabIndex = 2;
             // 
-            // textBox5
+            // telephoneNo
             // 
-            textBox5.Font = new Font("Segoe UI", 9F);
-            textBox5.Location = new Point(174, 275);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(250, 27);
-            textBox5.TabIndex = 5;
+            telephoneNo.Font = new Font("Segoe UI", 9F);
+            telephoneNo.Location = new Point(174, 275);
+            telephoneNo.Name = "telephoneNo";
+            telephoneNo.Size = new Size(250, 27);
+            telephoneNo.TabIndex = 5;
             // 
-            // textBox4
+            // nicNo
             // 
-            textBox4.Font = new Font("Segoe UI", 9F);
-            textBox4.Location = new Point(174, 240);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(250, 27);
-            textBox4.TabIndex = 5;
+            nicNo.Font = new Font("Segoe UI", 9F);
+            nicNo.Location = new Point(174, 240);
+            nicNo.Name = "nicNo";
+            nicNo.Size = new Size(250, 27);
+            nicNo.TabIndex = 5;
             // 
             // label01
             // 
@@ -406,51 +407,52 @@
             label01.TextAlign = ContentAlignment.MiddleCenter;
             label01.UseCompatibleTextRendering = true;
             // 
-            // button1
+            // newBtn
             // 
-            button1.BackColor = Color.FromArgb(0, 0, 64);
-            button1.FlatAppearance.BorderColor = Color.White;
-            button1.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Image = Properties.Resources.add;
-            button1.Location = new Point(1209, 765);
-            button1.Name = "button1";
-            button1.Size = new Size(140, 57);
-            button1.TabIndex = 10;
-            button1.Text = "New";
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = false;
+            newBtn.BackColor = Color.FromArgb(0, 0, 64);
+            newBtn.FlatAppearance.BorderColor = Color.White;
+            newBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
+            newBtn.ForeColor = Color.White;
+            newBtn.Image = Properties.Resources.add;
+            newBtn.Location = new Point(1209, 765);
+            newBtn.Name = "newBtn";
+            newBtn.Size = new Size(140, 57);
+            newBtn.TabIndex = 10;
+            newBtn.Text = "New";
+            newBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            newBtn.UseVisualStyleBackColor = false;
+            newBtn.Click += newBtn_Click;
             // 
-            // button2
+            // createUpdateBtn
             // 
-            button2.BackColor = Color.FromArgb(0, 0, 64);
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.FlatAppearance.BorderColor = Color.White;
-            button2.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Image = Properties.Resources.save;
-            button2.Location = new Point(1360, 765);
-            button2.Name = "button2";
-            button2.Size = new Size(140, 57);
-            button2.TabIndex = 10;
-            button2.Text = "Create";
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = false;
+            createUpdateBtn.BackColor = Color.FromArgb(0, 0, 64);
+            createUpdateBtn.BackgroundImageLayout = ImageLayout.None;
+            createUpdateBtn.FlatAppearance.BorderColor = Color.White;
+            createUpdateBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
+            createUpdateBtn.ForeColor = Color.White;
+            createUpdateBtn.Image = Properties.Resources.save;
+            createUpdateBtn.Location = new Point(1360, 765);
+            createUpdateBtn.Name = "createUpdateBtn";
+            createUpdateBtn.Size = new Size(140, 57);
+            createUpdateBtn.TabIndex = 10;
+            createUpdateBtn.Text = "Create";
+            createUpdateBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            createUpdateBtn.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // deleteBtn
             // 
-            button3.BackColor = Color.FromArgb(0, 0, 64);
-            button3.FlatAppearance.BorderColor = Color.White;
-            button3.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
-            button3.ForeColor = Color.White;
-            button3.Image = Properties.Resources.delete;
-            button3.Location = new Point(1510, 765);
-            button3.Name = "button3";
-            button3.Size = new Size(140, 57);
-            button3.TabIndex = 10;
-            button3.Text = "Delete";
-            button3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button3.UseVisualStyleBackColor = false;
+            deleteBtn.BackColor = Color.FromArgb(0, 0, 64);
+            deleteBtn.FlatAppearance.BorderColor = Color.White;
+            deleteBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
+            deleteBtn.ForeColor = Color.White;
+            deleteBtn.Image = Properties.Resources.delete;
+            deleteBtn.Location = new Point(1510, 765);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(140, 57);
+            deleteBtn.TabIndex = 10;
+            deleteBtn.Text = "Delete";
+            deleteBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            deleteBtn.UseVisualStyleBackColor = false;
             // 
             // search
             // 
@@ -484,9 +486,9 @@
             ClientSize = new Size(1662, 837);
             Controls.Add(pictureBox1);
             Controls.Add(search);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(deleteBtn);
+            Controls.Add(createUpdateBtn);
+            Controls.Add(newBtn);
             Controls.Add(label01);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -528,24 +530,24 @@
         private Label label12;
         private TextBox address;
         private RadioButton male;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateOfBirth;
         private ComboBox grade;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private TextBox textBox3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox5;
-        private TextBox textBox4;
+        private TextBox lastName;
+        private TextBox firstName;
+        private TextBox fullName;
+        private TextBox telephoneNo;
+        private TextBox nicNo;
         private Label label01;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button newBtn;
+        private Button createUpdateBtn;
+        private Button deleteBtn;
         private TextBox search;
         private BindingSource bindingSource1;
         private DateTimePicker dateOfAdmission;
         private GroupBox groupBox3;
-        private RadioButton radioButton1;
+        private RadioButton others;
         private RadioButton female;
         private PictureBox pictureBox1;
     }
