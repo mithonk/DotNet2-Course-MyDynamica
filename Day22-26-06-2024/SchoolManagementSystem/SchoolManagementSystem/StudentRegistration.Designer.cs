@@ -454,6 +454,7 @@
             deleteBtn.Text = "Delete";
             deleteBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // search
             // 

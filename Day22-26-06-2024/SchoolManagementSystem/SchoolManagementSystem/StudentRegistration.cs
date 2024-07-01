@@ -140,11 +140,11 @@ namespace SchoolManagementSystem
 
         private void createUpdateBtn_Click(object sender, EventArgs e)
         {
-            if(createUpdateBtn.Text == "Create")
+            if (createUpdateBtn.Text == "Create")
             {
                 string connectionString = null;
                 string sql = null;
-                
+
                 connectionString = "Server=MITHONK\\SQLEXPRESS; Database = SchoolManagementSystem; Trusted_Connection = True; TrustServerCertificate = True;";
 
                 SqlConnection cnn;
@@ -159,14 +159,14 @@ namespace SchoolManagementSystem
                 {
                     gender = female.Text;
                 }
-                else 
-                { 
+                else
+                {
                     gender = others.Text;
                 }
 
 
                 SqlCommand command;
-                sql = "INSERT INTO students (admission_no, grade_id, medium, date_of_admission, first_name, last_name, full_name, gender, date_of_birth, stu_nic_no, tp_no, resident_address) VALUES ('"+admissionNo.Text+"', '"+grade.Text+"', '"+medium.Text+"', '"+dateOfAdmission.Value.ToString("yyyy-MM-dd")+"', '"+firstName.Text+"', '"+lastName.Text+"', '"+fullName.Text+"', '"+gender+"', '"+dateOfBirth.Value.ToString("yyyy-MM-dd")+"', '"+nicNo.Text+"', '"+telephoneNo.Text+"', '"+address.Text+"' )";
+                sql = "INSERT INTO students (admission_no, grade_id, medium, date_of_admission, first_name, last_name, full_name, gender, date_of_birth, stu_nic_no, tp_no, resident_address) VALUES ('" + admissionNo.Text + "', '" + grade.Text + "', '" + medium.Text + "', '" + dateOfAdmission.Value.ToString("yyyy-MM-dd") + "', '" + firstName.Text + "', '" + lastName.Text + "', '" + fullName.Text + "', '" + gender + "', '" + dateOfBirth.Value.ToString("yyyy-MM-dd") + "', '" + nicNo.Text + "', '" + telephoneNo.Text + "', '" + address.Text + "' )";
 
 
                 try
@@ -178,18 +178,78 @@ namespace SchoolManagementSystem
                     cnn.Close();
                     MessageBox.Show("Created Successfully");
                 }
-                catch (Exception ex) 
-                { 
+                catch (Exception ex)
+                {
                     MessageBox.Show(ex.Message);
                 }
 
-                ClearData();
-                FetchData();
-
-
-            } else
+            }
+            else
             {
+                string connectinString = null;
+                string sql = null;
 
+                connectinString = "Server = MITHONK\\SQLEXPRESS; Database = SchoolManagementSystem; Trusted_Connection = True; TrustServerCertificate = True;";
+                SqlConnection cnn;
+                cnn = new SqlConnection(connectinString);
+
+                string gender;
+                if (male.Checked == true)
+                {
+                    gender = male.Text;
+                }
+                else if (female.Checked == true)
+                {
+                    gender = female.Text;
+                }
+                else
+                {
+                    gender = others.Text;
+                }
+
+                SqlCommand command;
+                sql = "UPDATE [students] SET [admission_no] = '" + admissionNo.Text + "', [grade_id] = '" + grade.Text + "', [medium] = '" + medium.Text + "', [date_of_admission] = '" + dateOfAdmission.Value.ToString("yyyy-MM-dd") + "', [first_name] = '" + firstName.Text + "', [last_name] = '" + lastName.Text + "', [full_name] = '" + fullName.Text + "', [gender] = '" + gender + "', [date_of_birth] = '" + dateOfBirth.Value.ToString("yyyy-MM-dd") + "', [stu_nic_no] = '" + nicNo.Text + "', [tp_no] = '" + telephoneNo.Text + "', [resident_address] = '" + address.Text + "' WHERE [id] = '" + this.id + "'  ";
+
+                try
+                {
+                    cnn.Open();
+                    command = new SqlCommand(sql, cnn);
+                    command.ExecuteNonQuery();
+                    cnn.Close();
+                    MessageBox.Show("Updated Successfully");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+            ClearData();
+            FetchData();
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            //string id = DataGridView.CurrentRow.Cells["id"].Value.ToString();
+
+            DialogResult DG = MessageBox.Show("Do You Want to Delete?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2 );
+
+            if( DG == DialogResult.Yes )
+            {
+                string connectionString = null;
+                string sql = null;
+
+                connectionString = "Server = MITHONK\\SQLEXPRESS; Database = SchoolManagementSystem; Trusted_Connection = True; TrustServerCertificate = True; ";
+                SqlConnection cnn;
+                cnn = new SqlConnection( connectionString );
+
+                SqlCommand command;
+                //string sql = "DELETE FORM students WHERE ";
+            }
+            else
+            {
+                return;
             }
         }
     }
