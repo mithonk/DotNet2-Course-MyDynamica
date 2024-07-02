@@ -231,7 +231,7 @@ namespace SchoolManagementSystem
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            //string id = DataGridView.CurrentRow.Cells["id"].Value.ToString();
+            string id = dataGridView.CurrentRow.Cells["id"].Value.ToString();
 
             DialogResult DG = MessageBox.Show("Do You Want to Delete?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2 );
 
@@ -245,7 +245,23 @@ namespace SchoolManagementSystem
                 cnn = new SqlConnection( connectionString );
 
                 SqlCommand command;
-                //string sql = "DELETE FORM students WHERE ";
+                sql = "DELETE FORM students WHERE id = '"+id+"' ";
+
+
+                try
+                {
+                    cnn.Open();
+                    command = new SqlCommand(sql, cnn);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Deleted Successfully");
+                    cnn.Close();
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Can not open connection! ");
+                }
+
             }
             else
             {
