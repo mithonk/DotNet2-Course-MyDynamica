@@ -245,7 +245,7 @@ namespace SchoolManagementSystem
                 cnn = new SqlConnection( connectionString );
 
                 SqlCommand command;
-                sql = "DELETE FORM students WHERE id = '"+id+"' ";
+                sql = "DELETE FROM students WHERE id = '"+id+"' ";
 
 
                 try
@@ -267,6 +267,9 @@ namespace SchoolManagementSystem
             {
                 return;
             }
+
+            ClearData() ;
+            FetchData();
         }
     }
 }

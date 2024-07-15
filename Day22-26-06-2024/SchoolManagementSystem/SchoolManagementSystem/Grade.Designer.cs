@@ -1,6 +1,6 @@
 ﻿namespace SchoolManagementSystem
 {
-    partial class StudentRegistration1
+    partial class Grade
     {
         /// <summary>
         /// Required designer variable.
@@ -83,8 +83,7 @@
             dataGridView.RowHeadersWidth = 51;
             dataGridView.Size = new Size(1181, 683);
             dataGridView.TabIndex = 0;
-            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
-            // 
+            //
             // label1
             // 
             label1.AutoSize = true;
@@ -421,7 +420,6 @@
             newBtn.Text = "New";
             newBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             newBtn.UseVisualStyleBackColor = false;
-            newBtn.Click += newBtn_Click;
             // 
             // createUpdateBtn
             // 
@@ -497,7 +495,6 @@
             Name = "StudentRegistration";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Student Registration";
-            Load += StudentRegistration_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
