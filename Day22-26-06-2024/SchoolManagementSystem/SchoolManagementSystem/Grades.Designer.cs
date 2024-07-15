@@ -237,6 +237,7 @@
             Controls.Add(groupBox1);
             Controls.Add(dataGridView);
             Name = "Grades";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Grades";
             Load += Grades_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();

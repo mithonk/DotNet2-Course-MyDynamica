@@ -38,14 +38,14 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             groupBox1 = new GroupBox();
+            label2 = new Label();
+            subjectOrder = new TextBox();
             subjectIndex = new TextBox();
             label8 = new Label();
             label9 = new Label();
             subjectName = new TextBox();
             subjectNumber = new TextBox();
             dataGridView = new DataGridView();
-            label2 = new Label();
-            subjectOrder = new TextBox();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -59,13 +59,14 @@
             deleteBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             deleteBtn.ForeColor = Color.White;
             deleteBtn.Image = Properties.Resources.delete;
-            deleteBtn.Location = new Point(840, 266);
+            deleteBtn.Location = new Point(874, 266);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(140, 57);
             deleteBtn.TabIndex = 26;
             deleteBtn.Text = "Delete";
             deleteBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // search
             // 
@@ -75,7 +76,7 @@
             search.Location = new Point(14, 63);
             search.Margin = new Padding(5);
             search.Name = "search";
-            search.Size = new Size(456, 34);
+            search.Size = new Size(491, 34);
             search.TabIndex = 29;
             // 
             // createUpdateBtn
@@ -86,13 +87,14 @@
             createUpdateBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             createUpdateBtn.ForeColor = Color.White;
             createUpdateBtn.Image = Properties.Resources.save;
-            createUpdateBtn.Location = new Point(690, 266);
+            createUpdateBtn.Location = new Point(724, 266);
             createUpdateBtn.Name = "createUpdateBtn";
             createUpdateBtn.Size = new Size(140, 57);
             createUpdateBtn.TabIndex = 27;
             createUpdateBtn.Text = "Create";
             createUpdateBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             createUpdateBtn.UseVisualStyleBackColor = false;
+            createUpdateBtn.Click += createUpdateBtn_Click;
             // 
             // newBtn
             // 
@@ -101,13 +103,14 @@
             newBtn.Font = new Font("Mongolian Baiti", 12F, FontStyle.Bold);
             newBtn.ForeColor = Color.White;
             newBtn.Image = Properties.Resources.add;
-            newBtn.Location = new Point(539, 266);
+            newBtn.Location = new Point(573, 266);
             newBtn.Name = "newBtn";
             newBtn.Size = new Size(140, 57);
             newBtn.TabIndex = 28;
             newBtn.Text = "New";
             newBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             newBtn.UseVisualStyleBackColor = false;
+            newBtn.Click += newBtn_Click;
             // 
             // label01
             // 
@@ -143,7 +146,7 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = Properties.Resources.search;
-            pictureBox1.Location = new Point(472, 63);
+            pictureBox1.Location = new Point(506, 63);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(61, 34);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -162,12 +165,30 @@
             groupBox1.Controls.Add(subjectNumber);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.White;
-            groupBox1.Location = new Point(539, 63);
+            groupBox1.Location = new Point(573, 63);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(441, 187);
             groupBox1.TabIndex = 24;
             groupBox1.TabStop = false;
             groupBox1.Text = "Grade Info";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century", 10.2F);
+            label2.Location = new Point(6, 146);
+            label2.Name = "label2";
+            label2.Size = new Size(122, 21);
+            label2.TabIndex = 4;
+            label2.Text = "Subject Order";
+            // 
+            // subjectOrder
+            // 
+            subjectOrder.Font = new Font("Segoe UI", 9F);
+            subjectOrder.Location = new Point(174, 140);
+            subjectOrder.Name = "subjectOrder";
+            subjectOrder.Size = new Size(250, 27);
+            subjectOrder.TabIndex = 5;
             // 
             // subjectIndex
             // 
@@ -216,29 +237,12 @@
             // dataGridView
             // 
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(14, 101);
+            dataGridView.Location = new Point(12, 101);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersWidth = 51;
-            dataGridView.Size = new Size(519, 222);
+            dataGridView.Size = new Size(555, 222);
             dataGridView.TabIndex = 23;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century", 10.2F);
-            label2.Location = new Point(6, 146);
-            label2.Name = "label2";
-            label2.Size = new Size(122, 21);
-            label2.TabIndex = 4;
-            label2.Text = "Subject Order";
-            // 
-            // subjectOrder
-            // 
-            subjectOrder.Font = new Font("Segoe UI", 9F);
-            subjectOrder.Location = new Point(174, 140);
-            subjectOrder.Name = "subjectOrder";
-            subjectOrder.Size = new Size(250, 27);
-            subjectOrder.TabIndex = 5;
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // subjects
             // 
@@ -255,7 +259,9 @@
             Controls.Add(groupBox1);
             Controls.Add(dataGridView);
             Name = "subjects";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Subjects";
+            Load += subjects_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
